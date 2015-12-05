@@ -1,0 +1,57 @@
+package com.cfg.team10.route21;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Future;
+import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.json.Json;
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.StaticHandler;
+
+public class Example extends AbstractVerticle {
+
+private Map<Integer, Whisky> products = new LinkedHashMap<>();
+@Override
+  public void start(Future<Void> fut) {
+createSomeData();
+ // Create a router object.
+ Router router = Router.router(vertx);
+
+ // Bind "/" to our hello message - so we are still compatible.
+ router.route("/").handler(routingContext -> {
+   HttpServerResponse response = routingContext.response();
+   response
+       .putHeader("content-type", "text/html")
+       .end("<h1>Hello from my first Vert.x 3 application</h1>");
+ });
+ 
+router.route("/assets/*").handler(StaticHandler.create("assets")); 
+    router.get("/api/whiskies").handler(this::getAll);
+vertx
+        .createHttpServer()
+        .requestHandler(router::accept)
+        
+        .listen(8080, result -> {
+          if (result.succeeded()) {
+            fut.complete();
+          } else {
+            fut.fail(result.cause());
+          }
+        });
+  }
+private void createSomeData() {
+  Whisky bowmore = new Whisky("Bowmore 15 Years Laimrig", "Scotland, Islay");
+  products.put(bowmore.getId(), bowmore);
+  Whisky talisker = new Whisky("Talisker 57° North", "Scotland, Island");
+  products.put(talisker.getId(), talisker);
+}
+private void getAll(RoutingContext routingContext) {
+  routingContext.response()
+      .putHeader("content-type", "application/json; charset=utf-8")
+      .end(Json.encodePrettily(products.values()));
+}
+
+}
