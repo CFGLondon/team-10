@@ -40,3 +40,4 @@ Features:
 -Live feeds of new opportunities 
 -Yes/No 
 -Comment
+-Subscribe
