@@ -11,8 +11,7 @@ easy to get to and use as majority of our target market would be of a younger ge
 world. Due to this we focused on a lot on just be easy to manage and fast.
 
 What makes us different?
-We do not want young people to be going out of their way to search like most traditional websites, but instead we want to be able to gather
-information though gathering information on the individual so that we can make it as flexible and dynamic as possible for them. This
+We do not want young people to be going out of their way to search like most traditional websites, but instead we want to be able to gatherinformation though gathering information on the individual so that we can make it as flexible and dynamic as possible for them. This
 would be done by using keywords to compare what their interests are and what submitters are looking for, by this we can then 
 generate links for them to view and decide for themselves. We also aim to make it easy for young people and submitters to be able to 
 communicate using a chat system so that replies can feel more genuine and not so much as if you are talking to a robot.
